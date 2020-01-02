@@ -1,6 +1,7 @@
 package com.boomcup.server.areas.shared.services.products.data
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
@@ -9,9 +10,11 @@ import javax.persistence.*
 @Table(name = "oc_attribute_description")
 data class AttributeDescription (
 
+    @JsonIgnore
     @EmbeddedId
     val id: AttributeDescriptionPK,
 
+    @JsonBackReference
     @ManyToOne
     @MapsId("attribute_id")
     @JoinColumn(name = "attribute_id")

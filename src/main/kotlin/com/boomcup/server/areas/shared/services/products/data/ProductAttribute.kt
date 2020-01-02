@@ -1,6 +1,8 @@
 package com.boomcup.server.areas.shared.services.products.data
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
 import java.io.Serializable
 import java.util.*
 import javax.persistence.*
@@ -9,6 +11,7 @@ import javax.persistence.*
 @Table(name = "oc_product_attribute")
 data class ProductAttribute (
 
+    @JsonIgnore
     @EmbeddedId
     val id: ProductAttributePK,
 
@@ -18,6 +21,7 @@ data class ProductAttribute (
     @JoinColumn(name = "product_id")
     val product: Product,
 
+    @JsonManagedReference
     @ManyToOne(fetch = FetchType.EAGER)
     @MapsId("attribute_id")
     @JoinColumn(name = "attribute_id")

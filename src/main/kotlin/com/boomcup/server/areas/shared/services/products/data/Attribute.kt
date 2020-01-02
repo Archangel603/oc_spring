@@ -1,5 +1,6 @@
 package com.boomcup.server.areas.shared.services.products.data
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import com.fasterxml.jackson.annotation.JsonManagedReference
 import javax.persistence.*
 
@@ -13,7 +14,7 @@ data class Attribute (
 
 ) {
 
-    @JsonManagedReference
+    @JsonBackReference
     @OneToMany(mappedBy = "attribute", cascade = [ CascadeType.ALL ])
     val productAttributes: List<ProductAttribute> = ArrayList()
 
